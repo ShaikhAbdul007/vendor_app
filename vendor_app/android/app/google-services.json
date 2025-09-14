@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1087565649986",
+    "project_id": "vendor-app-c426a",
+    "storage_bucket": "vendor-app-c426a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1087565649986:android:8dc507473ed8a279f735db",
+        "android_client_info": {
+          "package_name": "com.ihaan.vendorapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdbTKPOHqWM9kLpPc7Cddmu5IzoIhLE20"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
