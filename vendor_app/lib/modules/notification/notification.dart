@@ -21,7 +21,7 @@ class NotificationServices with CacheManager {
         sound: true);
 
     if (setting.authorizationStatus == AuthorizationStatus.authorized) {
-     Constant.printLog('Notifcation permission granted');
+      Constant.printLog('Notifcation permission granted');
     } else if (setting.authorizationStatus == AuthorizationStatus.provisional) {
       Constant.printLog('Notifcation permission granted');
     } else {
@@ -50,20 +50,22 @@ class NotificationServices with CacheManager {
       await flutterLocalNotificationsPlugin.initialize(
         initialization,
         onDidReceiveNotificationResponse: (NotificationResponse response) {
-          Constant.printLog("onDidReceiveNotificationResponse: ${response.payload}");
+          Constant.printLog(
+              "onDidReceiveNotificationResponse: ${response.payload}");
           Constant.printLog("onDidReceiveNotificationResponse: ${response.id}");
           String id = response.id.toString(); // Convert id to String
 
-        //  handlePayload(response.payload, id);
+          //  handlePayload(response.payload, id);
         },
         onDidReceiveBackgroundNotificationResponse:
             (NotificationResponse response) {
           Constant.printLog(
               "onDidReceiveBackgroundNotificationResponse: ${response.payload}");
-          Constant.printLog("onDidReceiveBackgroundNotificationResponse: ${response.id}");
+          Constant.printLog(
+              "onDidReceiveBackgroundNotificationResponse: ${response.id}");
           String id = response.id.toString(); // Convert id to String
 
-        //  handlePayload(response.payload, id);
+          //  handlePayload(response.payload, id);
         },
       );
     } catch (e) {
@@ -95,7 +97,7 @@ class NotificationServices with CacheManager {
           sound: true,
         );
 
-    await flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
+    flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
         MacOSFlutterLocalNotificationsPlugin>();
 
     AndroidNotificationDetails androidNotificationDetails =
@@ -141,32 +143,35 @@ class NotificationServices with CacheManager {
   Future<void> init(BuildContext context) async {
     FirebaseMessaging.onMessage.listen((message) async {
       if (kDebugMode) {
-        Constant.printLog("Handling a onMessage body message: ${message.notification?.body}");
-           Constant.printLog(
-          "Handling a onMessage title message: ${message.notification?.title}");
-      Constant.printLog("Handling a onMessage topic message: ${message.data['topic']}");
-      Constant.printLog("Handling a onMessage id message: ${message.data['id']}");
-   
+        Constant.printLog(
+            "Handling a onMessage body message: ${message.notification?.body}");
+        Constant.printLog(
+            "Handling a onMessage title message: ${message.notification?.title}");
+        Constant.printLog(
+            "Handling a onMessage topic message: ${message.data['topic']}");
+        Constant.printLog(
+            "Handling a onMessage id message: ${message.data['id']}");
       }
       await initLocalNotification(context, message);
       await showNotification(message);
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
-       if (kDebugMode) {
-      Constant.printLog(
-          "Handling a onMessageOpenedApp body message: ${message.notification?.body}");
-      Constant.printLog(
-          "Handling a onMessageOpenedApp title message: ${message.notification?.title}");
-      Constant.printLog(
-          "Handling a onMessageOpenedApp topic message: ${message.data['topic']}");
-      Constant.printLog("Handling a onMessageOpenedApp id message: ${message.data['id']}");}
-     
+      if (kDebugMode) {
+        Constant.printLog(
+            "Handling a onMessageOpenedApp body message: ${message.notification?.body}");
+        Constant.printLog(
+            "Handling a onMessageOpenedApp title message: ${message.notification?.title}");
+        Constant.printLog(
+            "Handling a onMessageOpenedApp topic message: ${message.data['topic']}");
+        Constant.printLog(
+            "Handling a onMessageOpenedApp id message: ${message.data['id']}");
+      }
     });
   }
 
   // Future<void> handlePayload(String? payload, String id) async {
-    
+
   //   Constant.printLog('Payload: $payload, ID: $id');
   //   if (payload == null || payload.isEmpty) {
   //     Constant.printLog('Payload is null');
@@ -184,6 +189,4 @@ class NotificationServices with CacheManager {
   //     MyRoutes.navigateToRoute(routeName: MyRoutes.loginScreen);
   //   }
   // }
-
-
 }
